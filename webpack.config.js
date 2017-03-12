@@ -15,43 +15,46 @@ module.exports = {
         filename: 'bundle.js'
     },
     resolve: {
-        modules: ['node_modules', 'src'],
-        extensions: ['*', '.js', '.scss']
+        modules: [
+          path.resolve('./src'),
+          "node_modules"
+        ],
+        extensions: ['.js', '.scss']
     },
     module: {
-        loaders: [
+        rules: [
         {
             test: /\.js$/,
             exclude: /node_modules/,
-            loader: 'babel-loader',
-            query: {
-                presets: ['es2015']
-            }
+            use: [{
+                loader: 'babel-loader',
+                options: { presets: ['es2015']}
+            }],
         },
         {
             test: /\.html$/,
-            loader: 'raw-loader'
+            use: 'raw-loader'
         },
         {
             test: /\.scss$/,
-            loaders: [
+            use: [
                 'style-loader',
-                'css-loader',
-                'autoprefixer-loader',
+                'css-loader?importLoaders=1',
+                'postcss-loader',
                 'sass-loader'
             ]
         },
         {
             test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
-            loader: 'imports-loader?jQuery=jquery'
+            use: 'imports-loader?jQuery=jquery'
         },
         {
             test: /\.(woff2?|svg)$/,
-            loader: 'url-loader?limit=10000'
+            use: 'url-loader?limit=10000'
         },
         {
             test: /\.(ttf|eot)$/,
-            loader: 'file-loader'
+            use: 'file-loader'
         }
         ]
     },

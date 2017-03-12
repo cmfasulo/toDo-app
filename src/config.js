@@ -1,7 +1,7 @@
 //Main AngularJS file with configuration, routing
 import angular from 'angular'; //ES6 syntax, regular JS would use 'require'
 import uiRouter from 'angular-ui-router';
-import todosController from 'todos/todos.js';
+import todosController from 'todos/todos';
 
 const app = angular.module('app', [uiRouter]);
 
