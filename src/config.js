@@ -1,9 +1,10 @@
 //Main AngularJS file with configuration, routing
 import angular from 'angular'; //ES6 syntax, regular JS would use 'require'
 import uiRouter from 'angular-ui-router';
+import todoFactory from 'factories/todo-factory';
 import todosController from 'todos/todos';
 
-const app = angular.module('app', [uiRouter]);
+const app = angular.module('app', [uiRouter, todoFactory.name]);
 
 //ES6 syntax for functions =>
 app.config(($stateProvider, $urlRouterProvider, $locationProvider) => {
