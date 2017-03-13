@@ -5,18 +5,7 @@ export default function($scope, todoFactory) {
     createHasInput: false
   };
 
-  $scope.todos = [
-  {
-    task: 'do dishes',
-    isCompleted: false,
-    isEditing: false
-  },
-  {
-    task: 'walk the dog',
-    isCompleted: true,
-    isEditing: false
-  }
-  ];
+  todoFactory.getTasks($scope);
 
   $scope.onCompletedClick = todo => {
     todo.isCompleted = !todo.isCompleted;
@@ -34,7 +23,7 @@ export default function($scope, todoFactory) {
   //lodash method to bind $scope and params. this ensures the original objects are mutated, not copied and changed.
   $scope.createTask = _.partial(todoFactory.createTask, $scope, params);
 
-  $scope.updateTask = _.partial(todoFactory.updateTask);
+  $scope.updateTask = _.partial(todoFactory.updateTask, $scope);
 
   $scope.deleteTask = _.partial(todoFactory.deleteTask, $scope);
 

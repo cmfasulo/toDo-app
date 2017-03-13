@@ -1,7 +1,13 @@
 var express = require('express'); //import express package
 var app = express(); //define app as an express app
+var bodyParser = require('body-parser'); //allows for reading data in requests/responses
+var routes = require('server/routes'); //import server routes
 
 var PORT = process.env.PORT || 3000; //list all ports for deployment
+
+app.use(bodyParser.json());
+
+routes(app);
 
 //display html in page
 app.all('/*', function(req, res) {
@@ -9,7 +15,7 @@ app.all('/*', function(req, res) {
     <!DOCTYPE html>\
     <html>\
       <head>\
-        <title>EllieDee</title>\
+        <title>ToDo App</title>\
         <base href="/">\
       </head>\
       <body>\
