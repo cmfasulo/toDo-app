@@ -14,7 +14,7 @@
       <th>Actions</th>
     </tr>
     <tr ng-repeat="todo in todos">
-      <td><input type="checkbox" ng-checked="todo.isCompleted" ng-click="onCompletedClick(todo)"></td>
+      <td><input type="checkbox" ng-checked="todo.isCompleted" ng-click="completeTask(todo)"></td>
       <td>
         <span ng-if="!todo.isEditing" class="todos__task" ng-class="{ 'todos__task--completed': todo.isCompleted  }">{{ todo.task }}</span>
 

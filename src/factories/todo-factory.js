@@ -30,11 +30,17 @@ const todoFactory = angular.module('app.todoFactory', [])
     // todo.task = todo.updatedTask;
     // todo.isEditing = false;
 
-    $http.put(`/todos/${todo._id}`, { task: todo.updatedTask }).then(
+    $http.put(`/todos/${todo._id}`, { task: todo.updatedTask, isCompleted: todo.isCompleted }).then(
       response => {
         getTasks($scope);
         todo.isEditing = false;
       });
+  }
+
+  function completeTask($scope, todo) {
+    todo.isCompleted =  !todo.isCompleted;
+    todo.updatedTask =  todo.task;
+    updateTask($scope, todo);
   }
 
   function deleteTask($scope, todoToDelete) {
@@ -63,6 +69,7 @@ const todoFactory = angular.module('app.todoFactory', [])
     getTasks,
     createTask,
     updateTask,
+    completeTask,
     deleteTask,
     watchCreateTaskInput
   };

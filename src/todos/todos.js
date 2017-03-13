@@ -7,10 +7,6 @@ export default function($scope, todoFactory) {
 
   todoFactory.getTasks($scope);
 
-  $scope.onCompletedClick = todo => {
-    todo.isCompleted = !todo.isCompleted;
-  };
-
   $scope.onEditClick = todo => {
     todo.isEditing = true;
     todo.updatedTask = todo.task;
@@ -24,6 +20,8 @@ export default function($scope, todoFactory) {
   $scope.createTask = _.partial(todoFactory.createTask, $scope, params);
 
   $scope.updateTask = _.partial(todoFactory.updateTask, $scope);
+
+  $scope.completeTask = _.partial(todoFactory.completeTask, $scope);
 
   $scope.deleteTask = _.partial(todoFactory.deleteTask, $scope);
 
